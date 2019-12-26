@@ -5,6 +5,8 @@ from typing import List
 def jaka_to_kategoria():
     global kategoria
     kategoria = input("Jaka to kategoria?")
+    if kategoria == (''):
+        kategoria = None
     return kategoria
 
 def z_jakiego_na_jaki():
@@ -19,7 +21,6 @@ def sprawdz_czy_to_nl_rzeczownik(wiatrackie_slowo):
     if poczatek_de.lower() == 'de ' or poczatek_het.lower() == 'het ':
         b = 'yes'
         return b
-  #  print (poczatek)
 
 
 
@@ -79,7 +80,7 @@ def glowny_ekran():
     if z_jakiego_na_jaki_temp == "2to1":
         lan_2: str = input("Slowko po holendersku:")
         lan_1: str = input("Slowko po polsku:")
-        is_it_verb: str = str(sprawdz_czy_to_nl_rzeczownik(lan_2))
+        czy_to_rzecz = sprawdz_czy_to_nl_rzeczownik(lan_2)
 
         confirmation: str = input("Czy slowa zostaly wpisane poprawnie?")
         if confirmation.lower() == "n":
@@ -87,19 +88,21 @@ def glowny_ekran():
 
         else:
             global slowa
-            slowa = [lan_1, lan_2, jakadata(), is_it_verb, kat]
+            lan_3 = None
+            slowa = [lan_1, lan_2, lan_3, jakadata(), czy_to_rzecz, kat]
             return slowa
     if z_jakiego_na_jaki_temp == "3to1":
         lan_3: str = input("Slowko po angielsku:")
         lan_1: str = input("Slowko po polsku:")
-        is_it_verb: str = str(sprawdz_czy_to_nl_rzeczownik(lan_3))
+        czy_to_rzecz = None
+        lan_2 = None
 
         confirmation: str = input("Czy slowa zostaly wpisane poprawnie?")
         if confirmation.lower() == "n":
             print("lipa")
         else:
-            #global slowa
-            slowa = [lan_1, lan_3, jakadata(), is_it_verb, kat]
+
+            slowa = [lan_1, lan_2, lan_3, jakadata(), czy_to_rzecz , kat]
             return slowa
 
 
@@ -107,8 +110,8 @@ def wprowadz_slowo(slowa):
     database = r"C:\sqlite\db\pythonsqlite211.db"
     conn = create_connection(database)
 
-    sql = ''' INSERT INTO words (language_1,language_2,adding_date,rzeczownik,category)
-              VALUES(?,?,?,?,?) '''
+    sql = ''' INSERT INTO words (language_1,language_2,language_3,adding_date,rzeczownik,category)
+              VALUES(?,?,?,?,?,?) '''
 
     cur = conn.cursor()
     cur.execute(sql, slowa)
@@ -121,7 +124,6 @@ def wprowadz_slowo(slowa):
 
 
 def glowniejszy():
-    print(jakadata())
     wprowadz_slowo(glowny_ekran())
     glowniejszy()
 
