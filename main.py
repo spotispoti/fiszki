@@ -76,15 +76,18 @@ def create_table(conn, create_words_table):
 
 
 def glowny_ekran():
-    #z_jakiego_na_jaki = ("2to1")
     if z_jakiego_na_jaki_temp == "2to1":
         lan_2: str = input("Slowko po holendersku:")
+        if lan_2.lower() == 'reset':
+            main()
         lan_1: str = input("Slowko po polsku:")
         czy_to_rzecz = sprawdz_czy_to_nl_rzeczownik(lan_2)
 
-        confirmation: str = input("Czy slowa zostaly wpisane poprawnie?")
+        confirmation: str = input("Czy slowa zostaly wpisane poprawnie? Wprowadz 'N/n jesli para slow jest nieprawidlowa.")
         if confirmation.lower() == "n":
             print("lipa")
+            glowny_ekran()
+
 
         else:
             global slowa
@@ -148,6 +151,7 @@ def main():
 
     if conn is not None:
         create_table(conn, create_words_table)
+        print('Wprowadz jezyk oraz kategorie. Mozesz dokonac zmiany podczas pracy programu wpisujac "Reset"')
         global z_jakiego_na_jaki_temp
         z_jakiego_na_jaki_temp = z_jakiego_na_jaki()
         global kat
