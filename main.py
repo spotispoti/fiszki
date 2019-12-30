@@ -2,6 +2,21 @@ import sqlite3
 from sqlite3 import Error
 from typing import List
 
+def odczyt_z_bazy(jezyk1):
+    database = r"C:\sqlite\db\pythonsqlite211.db"
+    conn = create_connection(database)
+
+    sql = ''' INSERT INTO words (language_1,language_2,language_3,adding_date,rzeczownik,category)
+                  VALUES(?,?,?,?,?,?) '''
+
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM words WHERE "+jezyk1+"=? is not null or "+jezyk1+"=? != ''", (jezyk1, jezyk1,))
+    rows = cur.fetchall()
+
+    for row in rows:
+        print(row)
+
+
 def jaka_to_kategoria():
     global kategoria
     kategoria = input("Jaka to kategoria?")
@@ -151,6 +166,8 @@ def main():
 
     if conn is not None:
         create_table(conn, create_words_table)
+        temp_rzecz = ("rzeczownik")
+        odczyt_z_bazy(temp_rzecz)
         print('Wprowadz jezyk oraz kategorie. Mozesz dokonac zmiany podczas pracy programu wpisujac "Reset"')
         global z_jakiego_na_jaki_temp
         z_jakiego_na_jaki_temp = z_jakiego_na_jaki()
