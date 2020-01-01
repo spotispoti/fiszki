@@ -1,8 +1,27 @@
 import sqlite3
+import random
 from sqlite3 import Error
 from typing import List
 
-def odczyt_z_bazy(jezyk1):
+def nauka():
+    jezyk1 = ("language_1")
+    jezyk2 = ("language_2")
+    a = odczyt_z_bazy(jezyk1, jezyk2)
+    b = random.randint(0,1)
+    c = abs(b-1)
+    wpisane = input(a[b])
+    if wpisane.lower() == "wprowadz":
+        return
+    if wpisane == a[c]:
+        nauka()
+    else:
+        print('\nZLE, poprawna odpowiedz to:',a[c])
+        print()
+        nauka()
+ #   print(a[b])
+
+
+def odczyt_z_bazy(jezyk1, jezyk2):
     database = r"C:\sqlite\db\pythonsqlite211.db"
     conn = create_connection(database)
 
@@ -10,11 +29,13 @@ def odczyt_z_bazy(jezyk1):
                   VALUES(?,?,?,?,?,?) '''
 
     cur = conn.cursor()
-    cur.execute("SELECT * FROM words WHERE "+jezyk1+"=? is not null or "+jezyk1+"=? != ''", (jezyk1, jezyk1,))
+    cur.execute("SELECT * FROM words WHERE "+jezyk1+"=? is not null and "+jezyk2+"=? is not null", (jezyk1, jezyk2,))
     rows = cur.fetchall()
-
-    for row in rows:
-        print(row)
+    temp_random_row = random.choice(rows)
+    #print(temp_random_row[1])
+    slowo_pl = temp_random_row[1]
+    slowo_obcy = temp_random_row[2]
+    return slowo_pl, slowo_obcy
 
 
 def jaka_to_kategoria():
@@ -95,6 +116,8 @@ def glowny_ekran():
         lan_2: str = input("Slowko po holendersku:")
         if lan_2.lower() == 'reset':
             main()
+        if lan_2.lower() == 'nauka':
+            nauka()
         lan_1: str = input("Slowko po polsku:")
         czy_to_rzecz = sprawdz_czy_to_nl_rzeczownik(lan_2)
 
@@ -111,6 +134,10 @@ def glowny_ekran():
             return slowa
     if z_jakiego_na_jaki_temp == "3to1":
         lan_3: str = input("Slowko po angielsku:")
+        if lan_3.lower() == 'reset':
+            main()
+        if lan_3.lower() == 'nauka':
+            nauka()
         lan_1: str = input("Slowko po polsku:")
         czy_to_rzecz = None
         lan_2 = None
@@ -166,8 +193,7 @@ def main():
 
     if conn is not None:
         create_table(conn, create_words_table)
-        temp_rzecz = ("rzeczownik")
-        odczyt_z_bazy(temp_rzecz)
+        nauka()
         print('Wprowadz jezyk oraz kategorie. Mozesz dokonac zmiany podczas pracy programu wpisujac "Reset"')
         global z_jakiego_na_jaki_temp
         z_jakiego_na_jaki_temp = z_jakiego_na_jaki()
