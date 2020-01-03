@@ -13,39 +13,58 @@ def nauka():
     if wpisane.lower() == "wprowadz":
         return
     if wpisane == a[c]:
+
+
+        czy_dobrze = True
         nauka()
+        return czy_dobrze
     else:
         print('\nZLE, poprawna odpowiedz to:',a[c])
         print()
         nauka()
+
+        return czy_dobrze
  #   print(a[b])
 
-def algorytm():
-    if dobrze:
+def algorytm(a):
 
+    if a == True:
+        
+        
+        
+        return
+    if a != True:
 
-    if zle:
-
+        ile_poprawnych_z_rzedu = "0"
+        wynik = (id_slowka,prawidlowo,nieprawidlowo,ile_poprawnych_z_rzedu,nauczone,data_nauczenia)
+        return wynik
+    
 def wprowadz_do_bazy_algorytm(algorytm):
     database = r"C:\sqlite\db\pythonsqlite211.db"
     conn = create_connection(database)
-    sql = ''' INSERT INTO algorytm (id_slowka,language_2,language_3,adding_date,rzeczownik,category)
+    sql = ''' INSERT INTO algorytm (id_slowka,prawidlowo,nieprawidlowo,ile_poprawnych_z_rzedu,nauczone,data_nauczenia)
                       VALUES(?,?,?,?,?,?) '''
+    cur = conn.cursor()
+    cur.execute(sql, algorytm)
+    conn.commit()
+    conn.close()
+
+    return
 
 
 
-id integer PRIMARY KEY,
-                                            id_slowka integer,
-                                            prawidlowo integer,
-                                            nieprawidlowo integer,
-                                            ile_poprawnych_z_rzedu integer
-                                            nauczone text,
-                                            data_nauczenia text,
-                                            i_p_z_rz_2 integer,
-                                            utrwalone text,
-                                            data_utrwalenia text,
-                                            ostatecznie_utrwalone text,
-                                            data_ostatecznego text
+#id integer PRIMARY KEY,
+          #                                  id_slowka integer,
+          #                                  prawidlowo integer,
+           #                                 nieprawidlowo integer,
+            #                                ile_poprawnych_z_rzedu integer
+             #                               nauczone text,
+              #E                              data_nauczenia text,
+                #                            i_p_z_rz_2 integer,
+                 #                           utrwalone text,
+                  #                          data_utrwalenia text,
+                   #                         ostatecznie_utrwalone text,
+                    #                        data_ostatecznego text
 
 
 def odczyt_z_bazy(jezyk1, jezyk2):
