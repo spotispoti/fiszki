@@ -406,7 +406,7 @@ def main():
         create_table(conn, user)
         #test()
 
-        dlakonego=input("Musialem te linijke dojebac, zeby Ci Konczyk dzialalo, bo normalnie sie wlacza domyslnie losowanie slowka, ale w nowej bazie nie masz slowek i stack overflow wyjebie :D, a nie chce mi sie robic zeby sprawdzalo czy baza jest pusta. ;p \n Krotkie readme:\n najpierw daj '2to1', kategorie wymysl dowolna \n User ma dostep tylko do dwoch opcji: 'nauka' i 'wprowadz'. Skaczesz miedzy nimi wpisujac 'nauka' lub 'wprowadz'\n user ma dostep tylko do dwoch  Napisz 'wprowadz' i daj enter")
+        dlakonego=input("Musialem te linijke dojebac, zeby Ci Konczyk dzialalo, bo normalnie sie wlacza domyslnie losowanie slowka, ale w nowej bazie nie masz slowek i stack overflow wyjebie :D, a nie chce mi sie robic zeby sprawdzalo czy baza jest pusta. ;p \n Krotkie readme:\n najpierw daj '2to1', kategorie wymysl dowolna \n User ma dostep tylko do dwoch opcji: 'nauka' i 'wprowadz'. Skaczesz miedzy nimi wpisujac 'nauka' lub 'wprowadz'\n   Napisz 'wprowadz' i daj enter")
         if dlakonego == 'wprowadz':
             dlakonczykapierwszeodpalenie()
         nauka()
