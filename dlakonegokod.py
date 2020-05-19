@@ -164,7 +164,6 @@ def nauka():
         return
     nauka()
 
-
 def update_bazy_algorytm(alg):
     database = r"pythonsqlite211.db"
     conn = create_connection(database)
@@ -404,8 +403,7 @@ def main():
         create_table(conn, create_words_table)
         create_table(conn, algorytm)
         create_table(conn, user)
-        #test()
-
+        #test
         dlakonego=input("Musialem te linijke dojebac, zeby Ci Konczyk dzialalo, bo normalnie sie wlacza domyslnie losowanie slowka, ale w nowej bazie nie masz slowek i stack overflow wyjebie :D, a nie chce mi sie robic zeby sprawdzalo czy baza jest pusta. ;p \n Krotkie readme:\n najpierw daj '2to1', kategorie wymysl dowolna \n User ma dostep tylko do dwoch opcji: 'nauka' i 'wprowadz'. Skaczesz miedzy nimi wpisujac 'nauka' lub 'wprowadz'\n   Napisz 'wprowadz' i daj enter")
         if dlakonego == 'wprowadz':
             dlakonczykapierwszeodpalenie()
