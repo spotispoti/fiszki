@@ -1,0 +1,63 @@
+0. ZARYS POMYSLU
+	*Faza 1:
+		-dzialajaca aplikacja jednoplatformowa (webapp, moze z czasem Android/iOS), ktora jest funkcjonalna, nie daje uzytkownikowi miejsca na spowodowanie bledu nieujetego w wyjatkach od poczatku pisana w przemyslany sposob (otwarta na rozbudowe)
+		-uzytkownik moze sie zarejestrowac (z walidacja tokenem) i korzystac tylko z funkcji, ktore sa w calosci skonczone i z grubsza przetestowane (czyli np. tylko jeden jezyk i bez opcji inteligentnej nauki (ktora na chama wezmiemy z tamtej mojej drugiej apki, z ktorej sam sie uczylem))
+		-jezeli wpierdolimy to juz na 'koncowy' serwer, warto od poczatku zaimplementowac cos do podstawowych statystyk (z jakich stron jest ruch, czasy sesji, lokalizacja userow itp.), zeby miec juz jakakolwiek informacje zwrotna inna niz od nas samych
+	*Faza 2:
+		-opcja inteligentej nauki (ktora juz jest napisana i przetestowana)
+		-co najmniej 3 jezyki (PL, ENG, NL) - to mozemy przetestowac sami i wylapac bledy
+		-nacisk na zbieranie jak najwiekszej ilosci danych (nawet tych, ktore wydaja sie na chwile obecna niepotrzebne lub niemozliwe na ten moment do wykorzystania). Mam na mysli zarowno zbieranie danych o userze w sensie danych 'prywatnych': lokalizacja, imie, nazwisko, mail, telefon, wiek (co tylko sie da) oraz zbieranie danych czysto o przebiegu gry (na razie bedzie to bezuzyteczne, ale sie przyda na pewno): KAZDE wywolanie slowka o jakiej godzinie, po jakim czasie odpowiedz, czy poprawna odpowiedz, KOLEJNOSC wywolania WSZYSTKICH wywolanych slowek, rejestracja czasow sesji i numeracja ich.
+		-obsluga aplikacji z poziomu admina przez panel
+		-dodatkowy tryb: byle co - byle bylo, np. czasowniki
+	*Faza 3
+		-od chuja jezykow
+		-pozyskanie co najmniej 1000 aktywnych uzytkownikow
+		-tryby nauki (przynajmniej dla PL, ENG, NL): mam fajne latwe pomysly
+		-przekucie tego w hajs
+
+
+1. ANALIZA WYMAGAN I POTRZEB
+	*Faza 1
+		-szczatkowy regulamin
+		-serwer (musze sie zalogowac, sprawdzic czy dziala moj, bo faktury nie zaplacilem jednej :D)
+		-wybor technologii
+		-nasz czas
+		-wybor jezyka wiodacego
+		-wybor typu obrazkow (jpg, png czy cos innego?)
+		-podstawowe safety (node i django to maja)
+	*Faza 2
+		-profesjonalny regulamin i sprawdzenie wszystkich uzytych narzedzi, czy sa na licencji do wykorzystania komercyjnego
+		-automatyzacja dodawania obrazkow (panel admina nazwijmy to), ktory przeskaluje obrazek, skompresuje, zapyta o nazwe i kategorie, zapisze w odpowiednim folderze w zaleznosci od kategorii, utworzy dla niego rekord w bazie, przejebie go przez funkcje sprawdzajaca czy tlumaczenie jest poprawne dla danego jezyka (mam zajebisty pomysl jak to zrobic) i jezeli sa watpliwosci czy tlumaczenie jest poprawne zaznaczy go jako podejrzany dla danego jezyka
+		-pozyskanie wiedzy z zakresu przechowywania i przetwarzania danych
+	*Faza 3
+		-to jest zbyt odlegle do analizy
+
+2. SPECYFIKACJA TECHNICZNA
+	To musimy zrobic razem, inaczej sie nie da, napisze tylko podstawowe moje przemyslenia:
+		*BAZA
+			-MySQL i nie ma co nawet kombinowac - chyba sie zgodzisz?
+		*W CZYM?
+			-opcji jest w chuj, ale tak naprawde prawdopodobnie wezmiemy pod uwage tylko Node'a i Django, right? Wiec napisze moim zdaniem wady i zalety
+				NODE:
+			Zalety:
+			Ty to juz umiesz i masz skilla
+			Latwiejsze niz assembler
+			Od Javy (wiem, ze to nie Java, tylko JS, ale mimo wszysto) blizej do androida niz z Pythona
+			Wady:
+			Ja nie umiem
+			Jest troche kodu w pythonie
+			Nie jest chyba tak algorytmiczny
+			
+				Django:
+			Zalety:
+			Dla Ciebie cos nowego do CV
+			Od tutoriala do odpalenia -> godzinka
+			Kompatybilny z pythonem jak chuj
+			Nie wiem jak Node, ale wiem, ze Django jest w chuj rozbudowane i ma wszystko (wszystko do MySQLa, wszystko od safety - od chuja bibliotek)
+			Python jest modny
+			Jest troche kodu w pythonie
+			Wady:
+			Musialbys jebnac tutorial
+			Bardziej rozbudowany niz Flask, ktory tez jest Pythonowym frameworkiem
+
+Reszte rzeczy dopiero mozna ogarnac jak pogadamy :D
